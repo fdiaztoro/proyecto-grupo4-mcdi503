@@ -1,0 +1,9 @@
+*.ipynb filter=nbstripout
+*.zpln filter=nbstripout
+*.ipynb diff=ipynb
+*.ipynb text eol=lf
+
+# La entrega de Canvas conserva las salidas del notebook ejecutado.
+notebooks/mcdi503_f1_sumativo_grupo4.ipynb -filter
+notebooks/mcdi503_s2_sumativo_grupo4.ipynb -filter
+notebooks/mcdi503_s3_sumativo_grupo4.ipynb -filter
