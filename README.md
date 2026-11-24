@@ -27,7 +27,7 @@ Las formativas (0 %) orientan cada sumativa; todas las entregas vencen a las 23:
 - `docs/`: apuntes, resúmenes semanales, rúbricas y borradores de informes.
 
 ## Dataset
-El grupo trabaja con `titanic` (opciones del curso: `titanic`, `mpg` o `penguins`). Aunque Seaborn puede cargarlo con `sns.load_dataset`, el notebook lee una copia local fija, `data/raw/titanic.csv`, y verifica su hash SHA-256 antes de cargarla; si el archivo no coincide, el notebook se detiene. Como `data/raw/` no se sube a GitHub, **cada integrante debe descargar el archivo una vez** (paso 4 de [Requisitos y ejecución](#requisitos-y-ejecución)). Si se usa un archivo externo, copiarlo en `data/raw/` y registrar su tamaño y hash SHA-256 en `docs/`.
+El grupo trabaja con `titanic` (opciones del curso: `titanic`, `mpg` o `penguins`). El notebook lee la copia local `data/raw/titanic.csv` si existe y, si no, carga el dataset desde Seaborn como respaldo; en ambos casos verifica el mismo hash SHA-256, y si no coincide, el notebook se detiene. Como `data/raw/` no se sube a GitHub, se recomienda que cada integrante descargue el archivo una vez (paso 4 de [Requisitos y ejecución](#requisitos-y-ejecución)). Si se usa un archivo externo, copiarlo en `data/raw/` y registrar su tamaño y hash SHA-256 en `docs/`.
 
 ## Reglas de entrega
 - Nombres sin tildes, ñ ni símbolos: `mcdi503_f1f_grupo4.pdf` (formativa), `mcdi503_f1_sumativo_grupo4.pdf` y `mcdi503_f1_sumativo_grupo4.ipynb` (sumativa).
