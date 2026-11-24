@@ -31,17 +31,15 @@ data/raw/*
 # Archivos de bloqueo temporal de Microsoft Office (se crean al abrir un .xlsx/.docx)
 ~$*
 
-# Artefactos de compilación LaTeX en redaccion/ (el PDF final vive en informes/)
-redaccion/**/*.aux
-redaccion/**/*.log
-redaccion/**/*.out
-redaccion/**/*.toc
-redaccion/**/*.synctex.gz
-redaccion/**/*.fls
-redaccion/**/*.fdb_latexmk
-redaccion/**/informe.pdf
-# Salida de scratch del notebook (no hace falta para compilar el informe)
-informes/formativa-1-eda-inferencia/figuras/
+# Artefactos de compilación LaTeX en docs/informe_sumativo*/
+# (el .tex y el PDF final revisado sí se versionan; esto son solo restos de compilar)
+docs/informe_sumativo*/*.aux
+docs/informe_sumativo*/*.log
+docs/informe_sumativo*/*.out
+docs/informe_sumativo*/*.toc
+docs/informe_sumativo*/*.synctex.gz
+docs/informe_sumativo*/*.fls
+docs/informe_sumativo*/*.fdb_latexmk
 
 # Notas sueltas en Markdown (se mantienen los README.md)
 *.md
