@@ -34,8 +34,8 @@
 % ===================== Estilo de títulos ===========================
 \titleformat{\section}{\large\bfseries\color{negro}}{\thesection.}{0.5em}{}
 \titleformat{\subsection}{\normalsize\bfseries\color{negro}}{\thesubsection}{0.5em}{}
-\titlespacing*{\section}{0pt}{1.4em}{0.4em}
-\titlespacing*{\subsection}{0pt}{1.0em}{0.3em}
+\titlespacing*{\section}{0pt}{1.0em}{0.3em}
+\titlespacing*{\subsection}{0pt}{0.8em}{0.2em}
 
 % ===================== Pie de página ===============================
 \pagestyle{fancy}
@@ -46,8 +46,12 @@
 \renewcommand{\footrulewidth}{0.4pt}
 
 % ===================== Comandos de guía ============================
-\newcommand{\guia}[1]{{\small\itshape\color{gris}#1}\par\vspace{0.15em}}
-\newcommand{\resp}{{\footnotesize\itshape\color{fillgray}[\,Desarrollen aquí\,]}\par\vspace{1.1em}}
+% \guia ya NO se imprime: el límite de 3 pags (portada+indice+todo+biblio,
+% ver "Aspectos formales" del enunciado) no da espacio para texto de ayuda
+% en el PDF final. La guía de cada sección queda como comentario "%GUIA:"
+% justo antes del \section correspondiente, visible solo en el .tex.
+% Antes de entregar: borrar también los \resp que queden.
+\newcommand{\resp}{{\footnotesize\itshape\color{fillgray}[\,Desarrollen aquí\,]}\par\vspace{0.3em}}
 
 % Caja de información de la evaluación (escala de grises):
 \newtcolorbox{infobox}[1][Información de la evaluación]{colback=black!3,colframe=negro,
@@ -58,70 +62,69 @@
 \newcommand{\proyTitulo}{Asociación entre características sociodemográficas y supervivencia en el Titanic: un análisis exploratorio}
 \newcommand{\proyIntegrantes}{Felipe Díaz Toro, Pablo Ríos Passteni, Guillermo Subiabre Chacón, Ninoska Yévenes Hernández}
 \newcommand{\proyDataset}{\texttt{titanic} (repositorio \texttt{seaborn-data}, Waskom, s.\,f.)}
-\newcommand{\proyDocente}{«nombre del docente»}
+\newcommand{\proyDocente}{Sergio Paraíso Medina}
 \newcommand{\proyFecha}{«dd/mm/aaaa»}
+% \proyRepo: no lo exige el enunciado ni la rúbrica de Sumativa 1 de MCDI503
+% (se tomó de la plantilla de MCDI501, que sí lo pedía). Se deja definido por
+% si se quiere agregar de vuelta, pero no se imprime en la portada.
 \newcommand{\proyRepo}{\url{https://github.com/fdiaztoro/proyecto-grupo4-mcdi503}}
 
 \setlength{\parindent}{0pt}
-\setlength{\parskip}{0.35em}
+\setlength{\parskip}{0.25em}
 
 \begin{document}
 \pagenumbering{gobble}
 
 \thispagestyle{empty}
 \begin{center}
-\vspace*{1.0cm}
-\includegraphics[height=4.4cm]{logo_unab.png}\\[1.3cm]
+\vspace*{0.3cm}
+\includegraphics[height=3.0cm]{logo_unab.png}\\[0.6cm]
 
 {\footnotesize\color{gris}\MakeUppercase{Magíster en Ciencia de Datos e Inteligencia Artificial}}\\[0.15cm]
-{\footnotesize\color{grisclaro}MCDI503: Exploración Inteligente para la Ciencia de Datos}\\[2.0cm]
+{\footnotesize\color{grisclaro}MCDI503: Exploración Inteligente para la Ciencia de Datos}\\[1.0cm]
 
-{\Large\bfseries\color{negro} Evaluación Sumativa 1}\\[0.45cm]
-{\large\color{negro} Avance Proyecto Fase 1 --- Implementación inicial de EDA reproducible}\\[1.0cm]
+{\Large\bfseries\color{negro} Evaluación Sumativa 1}\\[0.3cm]
+{\large\color{negro} Avance Proyecto Fase 1 --- Implementación inicial de EDA reproducible}\\[0.5cm]
 
 {\small\itshape\color{gris} Informe técnico grupal \textperiodcentered\ 20\,\%}
 \end{center}
 
-\vspace{1.6cm}
+\vspace{0.8cm}
 
 \begin{flushleft}
-\setlength{\extrarowheight}{5pt}
-\begin{tabular}{@{}>{\bfseries\color{negro}}l l@{}}
+\setlength{\extrarowheight}{4pt}
+\begin{tabular}{@{}>{\bfseries\color{negro}}l p{10.5cm}@{}}
 Título del proyecto: & \proyTitulo \\
 Integrantes:         & \proyIntegrantes \\
 Dataset:             & \proyDataset \\
 Docente:             & \proyDocente \\
 Fecha:               & \proyFecha \\
-Repositorio GitHub:  & \proyRepo \\
 \end{tabular}
 \end{flushleft}
 
-\clearpage
+\vspace{0.6cm}
 \pagenumbering{arabic}
 \begin{infobox}
-\textbf{Fase del proyecto:} Fase 1: Implementación inicial de EDA reproducible\\
-\textbf{Modalidad:} Grupal (3--4 integrantes)\qquad\textbf{Ponderación:} 20\,\% de la nota final (60 pts)\\
-\textbf{Entregables:} Informe PDF (máx.\ 3 págs., incluye portada y bibliografía) \ \textperiodcentered\ Notebook \texttt{.ipynb} ejecutado --- se entregan juntos en Canvas\\
-\textbf{Resultado de aprendizaje (RA1):} aplicar principios básicos del análisis exploratorio de datos y prácticas de reproducibilidad.\\
-\textbf{Indicadores:} ID1.1, ID1.2, ID1.3, ID1.4.\\
-\textbf{Recuerden:} el PDF y el notebook no son productos independientes: deben referirse explícitamente entre sí (secciones, tablas, figuras) y ser coherentes.
+\footnotesize
+\textbf{Fase:} Fase 1, EDA reproducible inicial\quad
+\textbf{Modalidad:} grupal (3--4)\quad
+\textbf{Ponderación:} 20\,\% (60 pts)\\
+\textbf{Entregables:} informe PDF (máx.\ 3 págs., con portada y bibliografía) + notebook \texttt{.ipynb} ejecutado, juntos en Canvas\\
+\textbf{RA1:} aplicar principios básicos de EDA y reproducibilidad\quad
+\textbf{Indicadores:} ID1.1--ID1.4
 \end{infobox}
 
-\vspace{0.5em}
-\tableofcontents
-\newpage
+\vspace{0.3em}
+{\small\tableofcontents}
 
 \section{Portada e índice}
-\guia{(3 pts) Portada con asignatura, fase, título, integrantes y fecha; apartados identificables con títulos visibles y en secuencia reconocible.}
 Ver portada y tabla de contenidos de este documento.
 
 \section{Introducción y contextualización}
-\guia{(3 pts) Contexto del proyecto, problema analizado, propósito del análisis exploratorio y valor esperado, vinculado con el dataset trabajado.}
-El hundimiento del RMS Titanic (abril de 1912) es un caso histórico con registros individuales de pasajeros, lo que permite estudiar cómo se relacionan sus características personales y de viaje con la supervivencia (notebook, sección II). El conjunto de datos \texttt{titanic} reúne 891 pasajeros con información sociodemográfica (sexo, edad), de viaje (clase, tarifa, puerto de embarque) y de acompañantes, además de presentar valores faltantes y variables de distinto tipo, lo que lo hace adecuado para un primer ciclo de EDA reproducible. El propósito de este avance es examinar, de forma descriptiva y documentada, la asociación entre la supervivencia y dichas características, dejando además un diagnóstico de calidad de los datos como base para las fases siguientes del proyecto.
+El hundimiento del RMS Titanic (1912) es un caso histórico con registros individuales de pasajeros, que permite estudiar cómo sus características personales y de viaje se relacionan con la supervivencia (notebook, sección II). El dataset \texttt{titanic} reúne 891 pasajeros con variables sociodemográficas (sexo, edad), de viaje (clase, tarifa, puerto) y de acompañantes, con valores faltantes y tipos de variable mixtos, adecuado para un primer ciclo de EDA reproducible. El propósito de este avance es examinar, de forma descriptiva, la asociación entre la supervivencia y dichas características, dejando un diagnóstico de calidad de los datos como base de las fases siguientes.
 
 \section{Objetivo exploratorio, preguntas iniciales y alcance del avance}
-\guia{(6 pts) Objetivo exploratorio del avance; preguntas exploratorias iniciales; alcance del trabajo realizado en esta fase; supuestos y limitaciones preliminares del análisis.}
-\textbf{Objetivo exploratorio.} Examinar, mediante un EDA descriptivo y reproducible, la asociación entre la supervivencia de los pasajeros del Titanic y un conjunto de características sociodemográficas y de viaje, evaluando previamente la calidad de los datos y documentando las decisiones de preparación adoptadas (notebook, sección II).
+\textbf{Objetivo.} Examinar, mediante un EDA descriptivo y reproducible, la asociación entre la supervivencia y las características sociodemográficas y de viaje de los pasajeros, evaluando antes la calidad de los datos y documentando las decisiones de preparación adoptadas (notebook, sección II).
 
 \textbf{Preguntas exploratorias iniciales:}
 \begin{enumerate}[nosep]
@@ -132,40 +135,51 @@ El hundimiento del RMS Titanic (abril de 1912) es un caso histórico con registr
   \item ¿Los faltantes de \texttt{age} y \texttt{deck} se concentran en ciertos grupos? (sección V)
 \end{enumerate}
 
-\textbf{Alcance de esta fase.} \resp
+\textbf{Alcance de esta fase.} Se cubre el diagnóstico de calidad de los datos, el tratamiento documentado de faltantes y columnas redundantes, y la respuesta a las preguntas 2, 3 y 5 (secciones III, V y VI). No se agota el EDA: quedan pendientes la exploración univariada con outliers IQR (pregunta 1, sección IV) y el cierre formal de supuestos, limitaciones y síntesis (secciones VII y VIII), que se completan antes de la entrega.
 
-\textbf{Supuestos y limitaciones preliminares.} \resp
+\textbf{Supuestos y limitaciones preliminares.} Se asume que las filas duplicadas corresponden a pasajeros distintos con perfiles comunes, al no existir un identificador único (III.4, V.2). La principal limitación es la pérdida de representatividad en \texttt{deck} (77,2\,\% de faltantes, casi solo registrada en primera clase) y, en menor medida, en \texttt{age} (19,9\,\%), por lo que los análisis que usan \texttt{age} excluyen esos casos en vez de imputarlos (V.2, VI.2).
 
+% GUIA (12 pts, junto a Sec. 7 -- "Notebook ejecutado y flujo del EDA"): flujo
+% general del notebook, referencia a sus secciones, integracion narrativa+codigo,
+% correspondencia pregunta <-> seccion donde se responde.
 \section{Implementación inicial del EDA en notebook}
-\guia{(12 pts, junto a la Sección 7 --- criterio ``Notebook ejecutado y flujo del EDA'') Flujo general del notebook; referencia a sus secciones principales; integración de narrativa y código; correspondencia entre preguntas exploratorias y acciones implementadas.}
-El notebook \texttt{mcdi503\_f1\_sumativo\_grupo4.ipynb} se organiza en ocho secciones (I a VIII), cada una con un responsable y bajo el mismo formato de ``bloque trazable'' (Pregunta $\rightarrow$ Acción $\rightarrow$ Decisión y por qué $\rightarrow$ Resultado): identificación del proyecto (I), contexto y objetivo (II), carga y revisión inicial de datos con verificación de hash SHA-256 (III), exploración preliminar con estadísticas descriptivas y outliers IQR (IV), decisiones y transformaciones que construyen la tabla de trabajo \texttt{titanic\_eda} (V), resultados e interpretación de la supervivencia por sexo, clase y edad (VI), supuestos y limitaciones (VII) y cierre del avance (VIII). Cada pregunta exploratoria de la sección II se responde en una sección específica del notebook, según se indica en la Sección 3 de este informe.
+El notebook \texttt{mcdi503\_f1\_sumativo\_grupo4.ipynb} tiene ocho secciones (I--VIII), cada una con un responsable y el mismo formato de ``bloque trazable'' (Pregunta $\rightarrow$ Acción $\rightarrow$ Decisión y por qué $\rightarrow$ Resultado): identificación (I), contexto y objetivo (II), carga y revisión con verificación por hash (III), exploración preliminar y outliers IQR (IV), decisiones y transformaciones --- tabla \texttt{titanic\_eda} (V), resultados por sexo, clase y edad (VI), supuestos y limitaciones (VII) y cierre (VIII). Cada pregunta de la Sección 3 se responde en la sección indicada entre paréntesis.
 
-\resp
-
+% GUIA (9 pts): que decisiones se tomaron, por que, que resultado intermedio
+% produjeron y como se relacionan con la evolucion del analisis en el notebook.
 \section{Documentación trazable de decisiones exploratorias}
-\guia{(9 pts) Qué decisiones se tomaron, por qué, qué resultados intermedios produjeron y cómo se relacionan con la evolución del análisis en el notebook.}
-En la sección V del notebook se documentan las decisiones centrales de esta fase: las 107 filas duplicadas se conservan, porque el dataset no tiene identificador de pasajero y, con solo 15 columnas, perfiles distintos pueden coincidir en todas sus variables; \texttt{age} (177 faltantes) no se imputa en esta fase, sino que se agrega el indicador \texttt{age\_missing}, porque el patrón de faltantes (sección V.1) muestra que la ausencia se asocia con la clase y la supervivencia, y una imputación con un valor único deformaría la distribución; \texttt{deck} (688 faltantes, 77,2\,\%) tampoco se imputa, por la misma razón, y se agrega \texttt{deck\_known}; las columnas redundantes (\texttt{class}, \texttt{alive}, \texttt{embark\_town}, \texttt{adult\_male}, \texttt{who}) se excluyen de la tabla de trabajo, verificado en la sección III.5. El resultado intermedio de estas decisiones es la tabla \texttt{titanic\_eda} (891 filas, 13 columnas), usada luego en las secciones IV y VI.
+En la sección V se documentan las decisiones centrales: las 107 filas duplicadas se conservan (no hay identificador de pasajero); \texttt{age} (177 faltantes) no se imputa, se agrega \texttt{age\_missing}, porque su ausencia se asocia con clase y supervivencia (V.1); \texttt{deck} (688 faltantes) tampoco se imputa, se agrega \texttt{deck\_known}; las columnas redundantes (\texttt{class}, \texttt{alive}, \texttt{embark\_town}, \texttt{adult\_male}, \texttt{who}) se excluyen (verificado en III.5). El resultado intermedio es \texttt{titanic\_eda} (891 filas, 13 columnas), usada en IV y VI.
 
-\resp
-
+% GUIA (9 pts): coherencia datos de entrada -> transformaciones -> resultados;
+% organizacion/ejecucion del notebook; flujo sin pasos omitidos ni ocultos.
 \section{Reproducibilidad y coherencia técnica}
-\guia{(9 pts) Coherencia entre datos de entrada, transformaciones y resultados; organización y ejecución del notebook; evidencia de que el flujo puede seguirse sin pasos omitidos.}
-El notebook verifica el hash SHA-256 de \texttt{data/raw/titanic.csv} antes de cargarlo y se detiene si no coincide con la versión de referencia del equipo (sección III.1), de modo que todos los integrantes trabajan sobre el mismo archivo. Las transformaciones se aplican sobre una copia (\texttt{titanic\_eda}), dejando \texttt{titanic} intacto, y se validan con \texttt{assert} (sección V.3). El entorno (Python 3.13, versiones fijas de \texttt{numpy}/\texttt{pandas}/\texttt{seaborn} en \texttt{requirements.txt}, kernel \texttt{grupo4\_mcdi503}) y el filtro \texttt{nbstripout} aseguran que el notebook se ejecute igual para cualquier integrante y que los commits no arrastren salidas desincronizadas con el código. El notebook se entrega ejecutado de principio a fin.
+El notebook verifica el hash SHA-256 de \texttt{titanic.csv} antes de cargarlo y se detiene si no coincide (III.1), por lo que todo el equipo trabaja sobre el mismo archivo. Las transformaciones se aplican sobre una copia (\texttt{titanic\_eda}), dejando \texttt{titanic} intacto, y se validan con \texttt{assert} (V.3). El entorno fijo (\texttt{requirements.txt}, kernel \texttt{grupo4\_mcdi503}) y el filtro \texttt{nbstripout} aseguran que el notebook corra igual para cualquier integrante. Se entrega ejecutado de principio a fin.
 
-\resp
-
+% GUIA (6 pts): pasos seguidos, supuestos, limitaciones, pendientes para fases
+% posteriores.
 \section{Registro del proceso, supuestos y limitaciones}
-\guia{(6 pts) Pasos seguidos durante la exploración; supuestos considerados; limitaciones detectadas; aspectos pendientes que condicionan las fases posteriores.}
-\resp
+\textbf{Pasos seguidos.} Carga con verificación por hash y diagnóstico de calidad (III); decisiones de preparación y construcción de \texttt{titanic\_eda} (V); supervivencia por sexo, clase y edad (VI).
 
+\textbf{Supuestos.} Los duplicados son pasajeros distintos, no errores de carga (III.4); las equivalencias entre columnas redundantes y sus pares se cumplen al 100\,\%, por lo que se excluyen sin pérdida de información (III.5).
+
+\textbf{Limitaciones.} \texttt{deck} queda casi reducido a primera clase (77,2\,\% de faltantes); los análisis de \texttt{age} excluyen el 19,9\,\% sin edad registrada; sin identificador de pasajero, no puede confirmarse que los duplicados sean personas distintas.
+
+\textbf{Pendiente.} Sección IV (distribución y outliers IQR, pregunta 1) y Sección VIII (cierre), que depende de IV.
+
+% GUIA (6 pts): principales hallazgos, interpretacion breve, referencias
+% explicitas a secciones/tablas/figuras del notebook.
 \section{Hallazgos exploratorios iniciales y referencias al notebook}
-\guia{(6 pts) Principales hallazgos; interpretación breve; referencias explícitas a secciones, tablas o figuras del notebook.}
-Entre los hallazgos de esta fase: (i) los faltantes de \texttt{age} y \texttt{deck} no se distribuyen al azar, sino que se concentran en pasajeros de clases más bajas (notebook, sección V.1, tabla \texttt{patron\_faltantes}); (ii) el sexo es, con diferencia, la variable más asociada a la supervivencia en las tres clases, y la clase amplía esa brecha entre los hombres: sobrevive el 96,8\,\% de las mujeres de primera clase frente al 36,9\,\% de los hombres, y en tercera clase un 50,0\,\% de las mujeres frente a un 13,5\,\% de los hombres (sección VI.1, tabla \texttt{tasa\_sexo\_clase} y su gráfico de barras); (iii) la edad por sí sola distingue poco entre quienes sobrevivieron y quienes no --- medianas idénticas (28 años) y rangos intercuartílicos muy superpuestos (sección VI.2, tabla \texttt{resumen\_edad\_supervivencia} y boxplot). Estas diferencias son descriptivas y no implican causalidad.
+(i) Los faltantes de \texttt{age} y \texttt{deck} se concentran en clases más bajas, no al azar (V.1, tabla \texttt{patron\_faltantes}). (ii) El sexo es la variable más asociada a la supervivencia en las tres clases, y la clase amplía la brecha entre hombres: sobrevive el 96,8\,\% de las mujeres de 1.\textsuperscript{a} clase frente al 36,9\,\% de los hombres, y en 3.\textsuperscript{a} clase un 50,0\,\% frente a un 13,5\,\% (VI.1, tabla \texttt{tasa\_sexo\_clase}). (iii) La edad por sí sola distingue poco entre sobrevivientes y no sobrevivientes --- medianas idénticas (28 años) (VI.2, tabla \texttt{resumen\_edad\_supervivencia} y boxplot). Diferencias descriptivas, sin implicar causalidad.
 
-\resp
-
+% GUIA (incluido en "Aspectos formales institucionales", 6 pts): minimo 3
+% fuentes APA 7a ed. (docente + tecnica + complementaria).
 \section{Bibliografía}
-\guia{(incluido en ``Aspectos formales institucionales'', 6 pts) Mínimo tres fuentes en APA 7.\textsuperscript{a} edición: bibliografía docente, técnica y complementaria.}
-\resp
+Bruce, P., Bruce, A., \& Gedeck, P. (2020). \textit{Practical statistics for data scientists} (2.\textsuperscript{a} ed.). O'Reilly Media.
+
+Hunter, J. D. (2007). Matplotlib: A 2D graphics environment. \textit{Computing in Science \& Engineering}, \textit{9}(3), 90--95. \url{https://doi.org/10.1109/MCSE.2007.55}
+
+Paraíso, S. (2026). \textit{Resumen aplicado del libro: EDA mínimo viable} [Apunte]. Universidad Andrés Bello.
+
+Waskom, M. L. (2021). seaborn: Statistical data visualization. \textit{Journal of Open Source Software}, \textit{6}(60), 3021. \url{https://doi.org/10.21105/joss.03021}
 
 \end{document}
