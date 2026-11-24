@@ -1,0 +1,188 @@
+\documentclass[11pt,a4paper]{article}
+
+% ===================== Codificación y fuentes =====================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+% ===================== Página y utilidades ========================
+\usepackage[left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm]{geometry}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\usepackage{booktabs}
+
+% ===================== Etiquetas en español (sin babel) ===========
+\renewcommand{\contentsname}{Índice}
+\renewcommand{\figurename}{Figura}
+\renewcommand{\tablename}{Tabla}
+\renewcommand{\refname}{Bibliografía}
+
+% ===================== Escala de grises (sin color) ================
+\definecolor{negro}{RGB}{0,0,0}
+\definecolor{gris}{RGB}{90,90,90}
+\definecolor{grisclaro}{RGB}{150,150,150}
+\definecolor{fillgray}{RGB}{175,175,175}
+
+% ===================== Hipervínculos (negro) =======================
+\hypersetup{colorlinks=true, linkcolor=negro, urlcolor=negro, citecolor=negro}
+
+% ===================== Estilo de títulos ===========================
+\titleformat{\section}{\large\bfseries\color{negro}}{\thesection.}{0.5em}{}
+\titleformat{\subsection}{\normalsize\bfseries\color{negro}}{\thesubsection}{0.5em}{}
+\titlespacing*{\section}{0pt}{1.0em}{0.3em}
+\titlespacing*{\subsection}{0pt}{0.8em}{0.2em}
+\makeatletter
+\renewcommand*{\l@section}{\@dottedtocline{1}{0em}{1.5em}}
+\makeatother
+
+% ===================== Pie de página ===============================
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[L]{\footnotesize\color{gris}Magíster en Ciencia de Datos e Inteligencia Artificial}
+\fancyfoot[R]{\footnotesize\color{gris}\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+% ===================== Comandos de guía ============================
+% \guia ya NO se imprime: el límite de 3 pags (portada+indice+todo+biblio,
+% ver "Aspectos formales" del enunciado) no da espacio para texto de ayuda
+% en el PDF final. La guía de cada sección queda como comentario "%GUIA:"
+% justo antes del \section correspondiente, visible solo en el .tex.
+% Antes de entregar: borrar también los \resp que queden.
+\newcommand{\resp}{{\footnotesize\itshape\color{fillgray}[\,Desarrollen aquí\,]}\par\vspace{0.3em}}
+
+% Caja de información de la evaluación (escala de grises):
+\newtcolorbox{infobox}[1][Información de la evaluación]{colback=black!3,colframe=negro,
+  fonttitle=\bfseries,coltitle=white,title={#1},boxrule=0.6pt,arc=1pt,
+  left=8pt,right=8pt,top=6pt,bottom=6pt,breakable}
+
+% ===================== Datos del grupo ==============================
+\newcommand{\proyTitulo}{Asociación entre características sociodemográficas y supervivencia en el Titanic: un análisis exploratorio}
+\newcommand{\proyIntegrantes}{Felipe Díaz Toro, Pablo Ríos Passteni, Guillermo Subiabre Chacón, Ninoska Yévenes Hernández}
+\newcommand{\proyDataset}{\texttt{titanic} (repositorio \texttt{seaborn-data}, Waskom, s.\,f.)}
+\newcommand{\proyDocente}{Sergio Paraíso Medina}
+\newcommand{\proyFecha}{«dd/mm/aaaa»}
+% \proyRepo: no lo exige el enunciado ni la rúbrica de Sumativa 1 de MCDI503
+% (se tomó de la plantilla de MCDI501, que sí lo pedía). Se deja definido por
+% si se quiere agregar de vuelta, pero no se imprime en la portada.
+\newcommand{\proyRepo}{\url{https://github.com/fdiaztoro/proyecto-grupo4-mcdi503}}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.25em}
+
+\begin{document}
+\pagenumbering{gobble}
+
+\thispagestyle{empty}
+\begin{center}
+\vspace*{0.3cm}
+\includegraphics[height=3.0cm]{logo_unab.png}\\[0.6cm]
+
+{\footnotesize\color{gris}\MakeUppercase{Magíster en Ciencia de Datos e Inteligencia Artificial}}\\[0.15cm]
+{\footnotesize\color{grisclaro}MCDI503: Exploración Inteligente para la Ciencia de Datos}\\[1.0cm]
+
+{\Large\bfseries\color{negro} Evaluación Sumativa 1}\\[0.3cm]
+{\large\color{negro} Avance Proyecto Fase 1 --- Implementación inicial de EDA reproducible}\\[0.5cm]
+
+{\small\itshape\color{gris} Informe técnico grupal \textperiodcentered\ 20\,\%}
+\end{center}
+
+\vspace{0.8cm}
+
+\begin{flushleft}
+\setlength{\extrarowheight}{4pt}
+\begin{tabular}{@{}>{\bfseries\color{negro}}l p{10.5cm}@{}}
+Título del proyecto: & \proyTitulo \\
+Integrantes:         & \proyIntegrantes \\
+Dataset:             & \proyDataset \\
+Docente:             & \proyDocente \\
+Fecha:               & \proyFecha \\
+\end{tabular}
+\end{flushleft}
+
+\vspace{0.6cm}
+\pagenumbering{arabic}
+\begin{infobox}
+\footnotesize
+\textbf{Fase:} Fase 1, EDA reproducible inicial\quad
+\textbf{Modalidad:} grupal (3--4)\quad
+\textbf{Ponderación:} 20\,\% (60 pts)\\
+\textbf{Entregables:} informe PDF (máx.\ 3 págs., con portada y bibliografía) + notebook \texttt{.ipynb} ejecutado, juntos en Canvas\\
+\textbf{RA1:} aplicar principios básicos de EDA y reproducibilidad\quad
+\textbf{Indicadores:} ID1.1--ID1.4
+\end{infobox}
+
+\vspace{0.3em}
+{\small\tableofcontents}
+
+\section{Portada e índice}
+Ver portada y tabla de contenidos de este documento.
+
+\section{Introducción y contextualización}
+El hundimiento del RMS Titanic (1912) es un caso histórico con registros individuales de pasajeros, que permite estudiar cómo sus características personales y de viaje se relacionan con la supervivencia (notebook, sección II). El dataset \texttt{titanic} (Waskom, s.\,f.) reúne 891 pasajeros con variables sociodemográficas (sexo, edad), de viaje (clase, tarifa, puerto) y de acompañantes, con valores faltantes y tipos de variable mixtos, adecuado para un primer ciclo de EDA reproducible. El propósito de este avance es examinar, de forma descriptiva, la asociación entre la supervivencia y dichas características, dejando un diagnóstico de calidad de los datos como base de las fases siguientes.
+
+\section{Objetivo exploratorio, preguntas iniciales y alcance del avance}
+\textbf{Objetivo.} Examinar, mediante un EDA descriptivo y reproducible, la asociación entre la supervivencia y las características sociodemográficas y de viaje de los pasajeros, evaluando antes la calidad de los datos y documentando las decisiones de preparación adoptadas (notebook, sección II).
+
+\textbf{Preguntas exploratorias iniciales:}
+\begin{enumerate}[nosep]
+  \item ¿Cómo se distribuyen la edad, la tarifa y la clase de los pasajeros, y hay valores atípicos? (sección IV)
+  \item ¿Cambia la supervivencia según el sexo y la clase del pasaje? (sección VI)
+  \item ¿Cómo se relaciona la edad con la supervivencia? (sección VI)
+  \item ¿Viajar acompañado se asocia con sobrevivir? (sección VI)
+  \item ¿Los faltantes de \texttt{age} y \texttt{deck} se concentran en ciertos grupos? (sección V)
+\end{enumerate}
+
+\textbf{Alcance de esta fase.} Se cubre el diagnóstico de calidad de los datos, el tratamiento documentado de faltantes y columnas redundantes, y la respuesta a las preguntas 2, 3, 4 y 5 (secciones III, V y VI). No se agota el EDA: quedan pendientes la exploración univariada con outliers según la regla del rango intercuartílico (Bruce et al., 2020; pregunta 1, sección IV) y el cierre formal de supuestos, limitaciones y síntesis (secciones VII y VIII), que se completan antes de la entrega. Los supuestos y limitaciones se detallan en la sección 7.
+
+% GUIA (12 pts, junto a Sec. 7 -- "Notebook ejecutado y flujo del EDA"): flujo
+% general del notebook, referencia a sus secciones, integracion narrativa+codigo,
+% correspondencia pregunta <-> seccion donde se responde.
+\section{Implementación inicial del EDA en notebook}
+El notebook \texttt{mcdi503\_f1\_sumativo\_grupo4.ipynb} tiene ocho secciones (I--VIII), cada una con un responsable y el mismo formato de ``bloque trazable'' (Pregunta $\rightarrow$ Acción $\rightarrow$ Decisión y por qué $\rightarrow$ Resultado): identificación (I), contexto y objetivo (II), carga y revisión con verificación por hash (III), exploración preliminar y outliers IQR (IV), decisiones y transformaciones --- tabla \texttt{titanic\_eda} (V), resultados por sexo, clase, edad y acompañantes (VI), supuestos y limitaciones (VII) y cierre (VIII). Cada pregunta de la Sección 3 se responde en la sección indicada entre paréntesis. Las visualizaciones usan seaborn (Waskom, 2021) y matplotlib (Hunter, 2007), y el análisis sigue el enfoque de EDA mínimo viable del curso (Paraíso, 2026).
+
+% GUIA (9 pts): que decisiones se tomaron, por que, que resultado intermedio
+% produjeron y como se relacionan con la evolucion del analisis en el notebook.
+\section{Documentación trazable de decisiones exploratorias}
+En la sección V se documentan las decisiones centrales: las 107 filas duplicadas se conservan (no hay identificador de pasajero); \texttt{age} (177 faltantes) no se imputa, se agrega \texttt{age\_missing}, porque su ausencia se asocia con clase y supervivencia (V.1); \texttt{deck} (688 faltantes) tampoco se imputa, se agrega \texttt{deck\_known}; las columnas redundantes (\texttt{class}, \texttt{alive}, \texttt{embark\_town}, \texttt{adult\_male}, \texttt{who}) se excluyen (verificado en III.5). El resultado intermedio es \texttt{titanic\_eda} (891 filas, 13 columnas), usada en IV y VI.
+
+% GUIA (9 pts): coherencia datos de entrada -> transformaciones -> resultados;
+% organizacion/ejecucion del notebook; flujo sin pasos omitidos ni ocultos.
+\section{Reproducibilidad y coherencia técnica}
+El notebook lee una copia local de \texttt{titanic.csv} y, si no existe, usa Seaborn como respaldo; en ambos casos verifica el hash SHA-256 y se detiene si no coincide (III.1), por lo que todo el equipo trabaja sobre los mismos datos. Las transformaciones se aplican sobre una copia (\texttt{titanic\_eda}), dejando \texttt{titanic} intacto, y se validan con \texttt{assert} (V.3). El entorno fijo (\texttt{requirements.txt}, kernel \texttt{grupo4\_mcdi503}) y el filtro \texttt{nbstripout} aseguran que el notebook corra igual para cualquier integrante. Se entrega ejecutado de principio a fin.
+
+% GUIA (6 pts): pasos seguidos, supuestos, limitaciones, pendientes para fases
+% posteriores.
+\section{Registro del proceso, supuestos y limitaciones}
+\textbf{Pasos seguidos.} Carga con verificación por hash y diagnóstico de calidad (III); decisiones de preparación y construcción de \texttt{titanic\_eda} (V); supervivencia por sexo, clase, edad y acompañantes (VI).
+
+\textbf{Supuestos.} Los duplicados son pasajeros distintos, no errores de carga (III.4); las equivalencias entre columnas redundantes y sus pares se cumplen al 100\,\%, por lo que se excluyen sin pérdida de información (III.5).
+
+\textbf{Limitaciones.} \texttt{deck} queda casi reducido a primera clase (77,2\,\% de faltantes); los análisis de \texttt{age} excluyen el 19,9\,\% sin edad registrada; sin identificador de pasajero, no puede confirmarse que los duplicados sean personas distintas.
+
+\textbf{Pendiente.} Sección IV (distribución y outliers IQR, pregunta 1) y Sección VIII (cierre), que depende de IV.
+
+% GUIA (6 pts): principales hallazgos, interpretacion breve, referencias
+% explicitas a secciones/tablas/figuras del notebook.
+\section{Hallazgos exploratorios iniciales y referencias al notebook}
+(i) Los faltantes de \texttt{age} y \texttt{deck} se concentran en clases más bajas, no al azar (V.1, tabla \texttt{patron\_faltantes}). (ii) El sexo es la variable más asociada a la supervivencia en las tres clases, y la brecha cambia con la clase: sobrevive el 96,8\,\% de las mujeres de 1.\textsuperscript{a} clase frente al 36,9\,\% de los hombres, y en 3.\textsuperscript{a} clase un 50,0\,\% frente a un 13,5\,\%; la clase afecta más a las mujeres que a los hombres (VI.1, tabla \texttt{tasa\_sexo\_clase}). (iii) La edad por sí sola distingue poco entre sobrevivientes y no sobrevivientes --- medianas idénticas (28 años) (VI.2, tabla \texttt{resumen\_edad\_supervivencia} y boxplot). (iv) Viajar acompañado no tiene una relación simple con la supervivencia: sobrevive el 30,4\,\% de quienes viajaban solos, el 57,9\,\% de los grupos de 2 a 4 personas y el 16,1\,\% de los de 5 o más; como la mayoría de quienes viajaban solos eran hombres, la lectura depende del sexo (VI.3, tablas \texttt{tasa\_acompanantes} y \texttt{tasa\_sexo\_solo}). Diferencias descriptivas, sin implicar causalidad.
+
+% GUIA (incluido en "Aspectos formales institucionales", 6 pts): minimo 3
+% fuentes APA 7a ed. (docente + tecnica + complementaria).
+\section{Bibliografía}
+Bruce, P., Bruce, A., \& Gedeck, P. (2020). \textit{Practical statistics for data scientists} (2.\textsuperscript{a} ed.). O'Reilly Media.
+
+Hunter, J. D. (2007). Matplotlib: A 2D graphics environment. \textit{Computing in Science \& Engineering}, \textit{9}(3), 90--95. \url{https://doi.org/10.1109/MCSE.2007.55}
+
+Paraíso, S. (2026). \textit{Resumen aplicado del libro: EDA mínimo viable} [Apunte]. Universidad Andrés Bello.
+
+Waskom, M. (s.\,f.). \textit{seaborn-data} [Conjunto de datos]. GitHub. \url{https://github.com/mwaskom/seaborn-data}
+
+Waskom, M. L. (2021). seaborn: Statistical data visualization. \textit{Journal of Open Source Software}, \textit{6}(60), 3021. \url{https://doi.org/10.21105/joss.03021}
+
+\end{document}
