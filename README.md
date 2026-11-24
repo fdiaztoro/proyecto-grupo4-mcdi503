@@ -25,6 +25,10 @@ Las formativas (0 %) orientan cada sumativa; todas las entregas vencen a las 23:
 - `notebooks/`: notebooks de Jupyter (un archivo por sumativa).
 - `data/raw/`: datasets de trabajo. No se suben a GitHub (ver `.gitignore`).
 - `docs/`: apuntes, resúmenes semanales, rúbricas y borradores de informes.
+  - `docs/informe_sumativoX/`: informe PDF complementario de cada sumativa, en LaTeX
+    (`informe.tex` + `logo_unab.png`). Se edita y compila ahí mismo (Overleaf o una
+    distribución de LaTeX local); el PDF final revisado se deja en la misma carpeta,
+    con el nombre definitivo del entregable (p. ej. `mcdi503_f1_sumativo_grupo4.pdf`).
 
 ## Dataset
 El grupo trabaja con `titanic` (opciones del curso: `titanic`, `mpg` o `penguins`). Aunque Seaborn puede cargarlo con `sns.load_dataset`, el notebook lee una copia local fija, `data/raw/titanic.csv`, y verifica su hash SHA-256 antes de cargarla; si el archivo no coincide, el notebook se detiene. Como `data/raw/` no se sube a GitHub, **cada integrante debe descargar el archivo una vez** (paso 4 de [Requisitos y ejecución](#requisitos-y-ejecución)). Si se usa un archivo externo, copiarlo en `data/raw/` y registrar su tamaño y hash SHA-256 en `docs/`.
