@@ -125,7 +125,7 @@ Los registros del Titanic (1912) permiten explorar la relación entre caracterí
   \item ¿Los faltantes de \texttt{age} y \texttt{deck} se concentran en ciertos grupos? (sección V.1: porcentaje de faltantes dentro de cada grupo, con \textit{n})
 \end{enumerate}
 
-\textbf{Alcance de esta fase.} Diagnóstico de calidad, exploración inicial y comparaciones descriptivas. La tarifa se describe en IV y el puerto se usa en el diagnóstico de faltantes, por lo que este alcance se acota respecto del plan de la Formativa 1. Las comparaciones muestran la tasa de supervivencia y el \textit{n} de cada grupo, sin estimar efectos ni causalidad. Los supuestos y límites se precisan en la sección 7 de este informe.
+\textbf{Alcance de esta fase.} Diagnóstico de calidad, exploración inicial y comparaciones descriptivas. La tarifa se describe en IV y el puerto se usa en el diagnóstico de faltantes, por lo que este alcance se acota respecto del plan de la Formativa 1. Las comparaciones muestran la tasa y el \textit{n} de cada grupo, sin estimar efectos. Los supuestos y límites se precisan en la sección 7 de este informe.
 
 \section{Implementación inicial del EDA en notebook}
 El notebook integra celdas narrativas de pregunta, acción y justificación con código, salidas e interpretación. Verifica y revisa los datos (III), describe las distribuciones originales (IV), prepara una tabla de trabajo (V) y contrasta los grupos (VI). El enfoque de EDA mínimo viable del curso (Paraíso, 2026) orienta los resúmenes con denominadores visibles y el registro de decisiones. En IV se usan histogramas, frecuencias y la regla de 1,5 veces el rango intercuartílico (Bruce et al., 2020). Las visualizaciones usan Matplotlib (Hunter, 2007) y Seaborn (Waskom, 2021).
@@ -134,7 +134,7 @@ El notebook integra celdas narrativas de pregunta, acción y justificación con 
 Se conservan las filas idénticas porque el dataset carece de identificador individual (III.4 y V.2). Se mantienen las edades y cubiertas faltantes y se crean \texttt{age\_missing} y \texttt{deck\_known}. Se excluyen cinco columnas redundantes tras comprobar sus equivalencias, se tipifican las categóricas y se deriva el tamaño familiar. El resultado es \texttt{titanic\_eda} (891 filas, 13 columnas), que usa VI. La exploración de IV usa los datos originales.
 
 \section{Reproducibilidad y coherencia técnica}
-En III.1 se lee la copia local de \texttt{titanic.csv} o, si falta, se reconstruye con Seaborn como respaldo; en ambos casos se verifica el SHA-256 antes de leerlo con \texttt{pandas.read\_csv} (The pandas development team, s.\,f.). Los datos originales se conservan y las transformaciones de la copia se validan en V.3. El notebook registra las versiones de ejecución y declara sus dependencias en \texttt{requirements.txt}. Las 17 celdas se ejecutaron desde cero por ambas rutas con el mismo hash y dimensiones.
+En III.1 se lee la copia local de \texttt{titanic.csv} o, si falta, se reconstruye con Seaborn como respaldo; en ambos casos se verifica el SHA-256 antes de leerlo con \texttt{pandas.read\_csv} (The pandas development team, s.\,f.). Los datos originales se conservan y las transformaciones de la copia se validan en V.3. El notebook registra las versiones de ejecución y declara sus dependencias en \texttt{requirements.txt}. Las 17 celdas se ejecutaron desde cero por ambas rutas con el mismo hash y dimensiones. La estructura y el registro de versiones y decisiones siguen el \textit{Checklist de notebook reproducible} (s.\,f.) y el notebook \textit{EDA mínimo viable} (s.\,f.) del curso.
 
 \section{Registro del proceso, supuestos y limitaciones}
 Se verificó y diagnosticó la fuente, se exploraron las distribuciones, se preparó una copia y se compararon los grupos (III--VI). Cada fila se usa como unidad de análisis. Sin un identificador, no puede determinarse si las filas idénticas representan al mismo pasajero. Los contrastes de edad usan 714 de 891 registros y la ausencia de edad varía entre grupos. La cubierta tiene 77,2\,\% de faltantes, concentrados en segunda y tercera clase. Los resultados se circunscriben al dataset y a comparaciones descriptivas. En la siguiente fase se evaluará la sensibilidad al tratamiento de faltantes y se podrán estratificar las comparaciones.
@@ -151,6 +151,10 @@ Estas diferencias son descriptivas y no implican causalidad.
 
 \section{Bibliografía}
 Bruce, P., Bruce, A., \& Gedeck, P. (2020). \textit{Practical statistics for data scientists: 50+ essential concepts using R and Python} (2.\textsuperscript{a} ed.). O'Reilly Media.
+
+\textit{Checklist de notebook reproducible} [Infografía]. (s.\,f.). Universidad Andrés Bello.
+
+\textit{EDA mínimo viable} [Notebook]. (s.\,f.). Universidad Andrés Bello.
 
 Hunter, J. D. (2007). Matplotlib: A 2D graphics environment. \textit{Computing in Science \& Engineering}, \textit{9}(3), 90--95. \url{https://doi.org/10.1109/MCSE.2007.55}
 
