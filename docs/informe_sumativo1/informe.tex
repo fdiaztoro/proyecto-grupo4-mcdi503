@@ -118,39 +118,27 @@ Los registros del Titanic (1912) permiten explorar la relación entre caracterí
 
 \textbf{Preguntas exploratorias iniciales:}
 \begin{enumerate}[nosep]
-  \item ¿Cómo se distribuyen la edad, la tarifa y la clase del pasaje? ¿Hay valores potencialmente atípicos? (sección IV)
-  \item ¿Cambia la supervivencia según el sexo y la clase del pasaje? (sección VI)
-  \item ¿Cómo se relaciona la edad con la supervivencia? (sección VI)
-  \item ¿Viajar con familiares registrados se asocia con sobrevivir? (secciones IV y VI.3)
-  \item ¿Los faltantes de \texttt{age} y \texttt{deck} se concentran en ciertos grupos? (sección V)
+  \item ¿Cómo se distribuyen la edad, la tarifa y la clase del pasaje? ¿Hay valores potencialmente atípicos? (sección IV: resumen con \textit{n}, cuartiles, histogramas y regla de 1,5 × RIC)
+  \item ¿Cambia la supervivencia según el sexo y la clase del pasaje? (sección VI.1: tasa de supervivencia y \textit{n} por sexo y clase, en gráfico de barras)
+  \item ¿Cómo se relaciona la edad con la supervivencia? (sección VI.2: resumen de edad con \textit{n} según supervivencia y diagrama de caja)
+  \item ¿Viajar con familiares registrados se asocia con sobrevivir? (secciones IV y VI.3: tasa y \textit{n} por tamaño del grupo familiar y por sexo)
+  \item ¿Los faltantes de \texttt{age} y \texttt{deck} se concentran en ciertos grupos? (sección V.1: porcentaje de faltantes dentro de cada grupo, con \textit{n})
 \end{enumerate}
 
-\textbf{Alcance de esta fase.} Diagnóstico de calidad, exploración inicial y comparaciones descriptivas. La tarifa se describe en IV y el puerto se usa en el diagnóstico de faltantes. Los supuestos y límites se precisan en la sección 7 de este informe.
+\textbf{Alcance de esta fase.} Diagnóstico de calidad, exploración inicial y comparaciones descriptivas. La tarifa se describe en IV y el puerto se usa en el diagnóstico de faltantes, por lo que este alcance se acota respecto del plan de la Formativa 1. Las comparaciones muestran la tasa y el \textit{n} de cada grupo, sin estimar efectos. Los supuestos y límites se precisan en la sección 7 de este informe.
 
-% GUIA (12 pts, junto a Sec. 7 -- "Notebook ejecutado y flujo del EDA"): flujo
-% general del notebook, referencia a sus secciones, integracion narrativa+codigo,
-% correspondencia pregunta <-> seccion donde se responde.
 \section{Implementación inicial del EDA en notebook}
 El notebook integra celdas narrativas de pregunta, acción y justificación con código, salidas e interpretación. Verifica y revisa los datos (III), describe las distribuciones originales (IV), prepara una tabla de trabajo (V) y contrasta los grupos (VI). El enfoque de EDA mínimo viable del curso (Paraíso, 2026) orienta los resúmenes con denominadores visibles y el registro de decisiones. En IV se usan histogramas, frecuencias y la regla de 1,5 veces el rango intercuartílico (Bruce et al., 2020). Las visualizaciones usan Matplotlib (Hunter, 2007) y Seaborn (Waskom, 2021).
 
-% GUIA (9 pts): que decisiones se tomaron, por que, que resultado intermedio
-% produjeron y como se relacionan con la evolucion del analisis en el notebook.
 \section{Documentación trazable de decisiones exploratorias}
 Se conservan las filas idénticas porque el dataset carece de identificador individual (III.4 y V.2). Se mantienen las edades y cubiertas faltantes y se crean \texttt{age\_missing} y \texttt{deck\_known}. Se excluyen cinco columnas redundantes tras comprobar sus equivalencias, se tipifican las categóricas y se deriva el tamaño familiar. El resultado es \texttt{titanic\_eda} (891 filas, 13 columnas), que usa VI. La exploración de IV usa los datos originales.
 
-% GUIA (9 pts): coherencia datos de entrada -> transformaciones -> resultados;
-% organizacion/ejecucion del notebook; flujo sin pasos omitidos ni ocultos.
 \section{Reproducibilidad y coherencia técnica}
-En III.1 se verifica el SHA-256 del CSV local o descargado antes de leerlo con \texttt{pandas.read\_csv} (The pandas development team, s.\,f.). Los datos originales se conservan y las transformaciones de la copia se validan en V.3. El notebook registra las versiones de ejecución y declara sus dependencias en \texttt{requirements.txt}. Las 17 celdas se ejecutaron desde cero por ambas rutas con el mismo hash y dimensiones.
+En III.1 se lee la copia local de \texttt{titanic.csv} o, si falta, se reconstruye con Seaborn como respaldo; en ambos casos se verifica el SHA-256 antes de leerlo con \texttt{pandas.read\_csv} (The pandas development team, s.\,f.). Los datos originales se conservan y las transformaciones de la copia se validan en V.3. El notebook registra las versiones de ejecución y declara sus dependencias en \texttt{requirements.txt}. Las 17 celdas se ejecutaron desde cero por ambas rutas con el mismo hash y dimensiones. La estructura y el registro de versiones y decisiones siguen el \textit{Checklist de notebook reproducible} (s.\,f.) y el notebook \textit{EDA mínimo viable} (s.\,f.) del curso.
 
-% GUIA (6 pts): pasos seguidos, supuestos, limitaciones, pendientes para fases
-% posteriores.
-\clearpage
 \section{Registro del proceso, supuestos y limitaciones}
 Se verificó y diagnosticó la fuente, se exploraron las distribuciones, se preparó una copia y se compararon los grupos (III--VI). Cada fila se usa como unidad de análisis. Sin un identificador, no puede determinarse si las filas idénticas representan al mismo pasajero. Los contrastes de edad usan 714 de 891 registros y la ausencia de edad varía entre grupos. La cubierta tiene 77,2\,\% de faltantes, concentrados en segunda y tercera clase. Los resultados se circunscriben al dataset y a comparaciones descriptivas. En la siguiente fase se evaluará la sensibilidad al tratamiento de faltantes y se podrán estratificar las comparaciones.
 
-% GUIA (6 pts): principales hallazgos, interpretacion breve, referencias
-% explicitas a secciones/tablas/figuras del notebook.
 \section{Hallazgos exploratorios iniciales y referencias al notebook}
 \begin{enumerate}[nosep,leftmargin=*]
 \item Edad mediana de 28 años (714 registros válidos), tercera clase con 491 de 891 pasajeros y 116 tarifas sobre el límite superior de 1,5 veces el rango intercuartílico (IV, tabla descriptiva y gráficos).
@@ -159,11 +147,14 @@ Se verificó y diagnosticó la fuente, se exploraron las distribuciones, se prep
 \item La tasa global más alta se observa en grupos familiares de 2 a 4 personas (57,9\,\%, 292 pasajeros). La comparación entre viajar solo o acompañado cambia al separar por sexo (VI.3).
 \item En tercera clase se observa un 27,7\,\% de edad faltante y un 97,6\,\% de cubierta faltante (V.1, tabla por clase).
 \end{enumerate}
+Estas diferencias son descriptivas y no implican causalidad.
 
-% GUIA (incluido en "Aspectos formales institucionales", 6 pts): minimo 3
-% fuentes APA 7a ed. (docente + tecnica + complementaria).
 \section{Bibliografía}
-Bruce, P., Bruce, A., \& Gedeck, P. (2020). \textit{Practical statistics for data scientists} (2.\textsuperscript{a} ed.). O'Reilly Media.
+Bruce, P., Bruce, A., \& Gedeck, P. (2020). \textit{Practical statistics for data scientists: 50+ essential concepts using R and Python} (2.\textsuperscript{a} ed.). O'Reilly Media.
+
+\textit{Checklist de notebook reproducible} [Infografía]. (s.\,f.). Universidad Andrés Bello.
+
+\textit{EDA mínimo viable} [Notebook]. (s.\,f.). Universidad Andrés Bello.
 
 Hunter, J. D. (2007). Matplotlib: A 2D graphics environment. \textit{Computing in Science \& Engineering}, \textit{9}(3), 90--95. \url{https://doi.org/10.1109/MCSE.2007.55}
 

@@ -26,8 +26,8 @@ Las formativas (0 %) orientan cada sumativa; todas las entregas vencen a las 23:
 - `data/raw/`: datasets de trabajo. No se suben a GitHub (ver `.gitignore`).
 - `docs/`: apuntes, resúmenes semanales, rúbricas y borradores de informes.
   - `docs/informe_sumativoX/`: informe PDF complementario de cada sumativa, en LaTeX
-    (`informe.tex` + `logo_unab.png`). Se edita y compila ahí mismo (Overleaf o una
-    distribución de LaTeX local); el PDF final revisado se deja en la misma carpeta,
+    (`informe.tex` + `logo_unab.png`). Se edita y compila ahí mismo con XeLaTeX (usa la
+    fuente Arial; Overleaf o una distribución de LaTeX local); el PDF final revisado se deja en la misma carpeta,
     con el nombre definitivo del entregable (p. ej. `mcdi503_f1_sumativo_grupo4.pdf`).
 
 ## Dataset
