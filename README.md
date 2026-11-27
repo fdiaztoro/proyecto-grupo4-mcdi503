@@ -35,7 +35,7 @@ El grupo trabaja con `titanic` (opciones del curso: `titanic`, `mpg` o `penguins
 
 ## Reglas de entrega
 - Nombres sin tildes, ñ ni símbolos: `mcdi503_f1f_grupo4.pdf` (formativa), `mcdi503_f1_sumativo_grupo4.pdf` y `mcdi503_f1_sumativo_grupo4.ipynb` (sumativa).
-- PDF de máximo 3 páginas, APA 7, Arial o Calibri 11. El notebook se entrega ejecutado.
+- PDF de máximo 3 páginas de contenido (la portada, con el índice, no cuenta), APA 7, Arial o Calibri 11. El notebook se entrega ejecutado.
 - Un integrante sube los archivos al buzón de Canvas con la opción "Examinar mi equipo".
 
 ## Trabajo en equipo
