@@ -5,7 +5,7 @@
 \IfFontExistsTF{Arial}{\setmainfont{Arial}}{\setmainfont{TeX Gyre Heros}}
 
 % ===================== Página y utilidades ========================
-\usepackage[left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm]{geometry}
+\usepackage[left=2.4cm,right=2.4cm,top=2.5cm,bottom=2.5cm]{geometry}
 \usepackage{array}
 \usepackage{enumitem}
 \usepackage{graphicx}
@@ -52,13 +52,9 @@
 % ver "Aspectos formales" del enunciado) no da espacio para texto de ayuda
 % en el PDF final. La guía de cada sección queda como comentario "%GUIA:"
 % justo antes del \section correspondiente, visible solo en el .tex.
-% Antes de entregar: borrar también los \resp que queden.
-\newcommand{\resp}{{\footnotesize\itshape\color{fillgray}[\,Desarrollen aquí\,]}\par\vspace{0.3em}}
-
-% Caja de información de la evaluación (escala de grises):
 
 % ===================== Datos del grupo ==============================
-\newcommand{\proyTitulo}{Asociación entre características sociodemográficas y supervivencia en el Titanic: un análisis exploratorio}
+\newcommand{\proyTitulo}{Asociación entre características sociodemográficas y supervivencia en el Titanic: un análisis exploratorio de datos reproducible}
 \newcommand{\proyIntegrantes}{Felipe Díaz Toro, Pablo Ríos Passteni, Guillermo Subiabre Chacón, Ninoska Yévenes Hernández}
 \newcommand{\proyDataset}{\texttt{titanic} (repositorio \texttt{seaborn-data}, Waskom, s.\,f.)}
 \newcommand{\proyDocente}{Sergio Paraíso Medina}
@@ -70,7 +66,7 @@
 
 \setlength{\emergencystretch}{2em}
 \setlength{\parindent}{0pt}
-\setlength{\parskip}{0.25em}
+\setlength{\parskip}{0.12em}
 
 \begin{document}
 \pagenumbering{arabic}
@@ -78,18 +74,18 @@
 \thispagestyle{empty}
 \begin{center}
 \vspace*{0.3cm}
-\includegraphics[height=3.0cm]{logo_unab.png}\\[0.6cm]
+\includegraphics[height=2.2cm]{logo_unab.png}\\[0.35cm]
 
 {\footnotesize\color{gris}\MakeUppercase{Magíster en Ciencia de Datos e Inteligencia Artificial}}\\[0.15cm]
-{\footnotesize\color{grisclaro}MCDI503: Exploración Inteligente para la Ciencia de Datos}\\[1.0cm]
+{\footnotesize\color{grisclaro}MCDI503: Exploración Inteligente para la Ciencia de Datos}\\[0.5cm]
 
 {\Large\bfseries\color{negro} Evaluación Sumativa 1}\\[0.3cm]
-{\large\color{negro} Avance Proyecto Fase 1 --- Implementación inicial de EDA reproducible}\\[0.5cm]
+{\large\color{negro} Avance Proyecto Fase 1 --- Implementación inicial de EDA reproducible}\\[0.3cm]
 
 {\small\itshape\color{gris} Informe técnico grupal \textperiodcentered\ 20\,\%}
 \end{center}
 
-\vspace{0.8cm}
+\vspace{0.45cm}
 
 \begin{flushleft}
 \setlength{\extrarowheight}{4pt}
@@ -102,33 +98,32 @@ Fecha:               & \proyFecha \\
 \end{tabular}
 \end{flushleft}
 
-\vspace{0.6cm}
-\vspace{0.3em}
+\vspace{0.35cm}
 {\small\tableofcontents}
 
 \refstepcounter{section}
 \addcontentsline{toc}{section}{\protect\numberline{1}Portada e índice}
-\clearpage
+\vspace{0.4em}
 
 \section{Introducción y contextualización}
-Los registros del Titanic (1912) permiten explorar la relación entre características de los pasajeros y supervivencia (notebook, sección II). El dataset \texttt{titanic} (Waskom, s.\,f.) reúne 891 pasajeros con variables sociodemográficas (sexo, edad), de viaje (clase, tarifa, puerto) y de acompañantes, con valores faltantes y tipos de variable mixtos, adecuado para un primer ciclo de EDA reproducible. El diagnóstico orienta la limpieza en las siguientes fases.
+Los registros del Titanic (1912) permiten explorar la relación entre características de los pasajeros y supervivencia (notebook, sección II). El dataset \texttt{titanic} (Waskom, s.\,f.) reúne 891 pasajeros con variables sociodemográficas (sexo, edad), de viaje (clase, tarifa, puerto) y de acompañantes, con valores faltantes y tipos de variable mixtos, adecuado para un primer ciclo de EDA reproducible. El propósito general es caracterizar el conjunto y examinar de qué manera esos factores se vinculan con la supervivencia. El valor esperado es doble: comprender qué patrones emergen y dejar un diagnóstico de calidad y una selección preliminar de variables que sirva de base a un modelo de clasificación posterior.
 
 \section{Objetivo exploratorio, preguntas iniciales y alcance del avance}
 \textbf{Objetivo.} Examinar, mediante un EDA descriptivo y reproducible, la asociación entre la supervivencia y las características sociodemográficas y de viaje de los pasajeros (sexo, edad, clase y acompañamiento familiar), revisando antes la calidad de los datos y documentando las decisiones de preparación (notebook, sección II).
 
 \textbf{Preguntas exploratorias iniciales:}
 \begin{enumerate}[nosep]
-  \item ¿Cómo se distribuyen la edad, la tarifa y la clase del pasaje? ¿Hay valores potencialmente atípicos? (sección IV: resumen con \textit{n}, cuartiles, histogramas y regla de 1,5 × RIC)
+  \item ¿Cómo se distribuyen la edad, la tarifa y la clase del pasaje? ¿Hay valores potencialmente atípicos? (sección IV: resumen con \textit{n}, media, desviación, cuartiles, histogramas y regla de 1,5 × RIC)
   \item ¿Cambia la supervivencia según el sexo y la clase del pasaje? (sección VI.1: tasa de supervivencia y \textit{n} por sexo y clase, en gráfico de barras)
   \item ¿Cómo se relaciona la edad con la supervivencia? (sección VI.2: resumen de edad con \textit{n} según supervivencia y diagrama de caja)
   \item ¿Viajar con familiares registrados se asocia con sobrevivir? (secciones IV y VI.3: tasa y \textit{n} por tamaño del grupo familiar y por sexo)
   \item ¿Los faltantes de \texttt{age} y \texttt{deck} se concentran en ciertos grupos? (sección V.1: porcentaje de faltantes dentro de cada grupo, con \textit{n})
 \end{enumerate}
 
-\textbf{Alcance de esta fase.} Diagnóstico de calidad, exploración inicial y comparaciones descriptivas. La tarifa se describe en IV y el puerto se usa en el diagnóstico de faltantes, por lo que este alcance se acota respecto del plan de la Formativa 1. Las comparaciones muestran la tasa y el \textit{n} de cada grupo, sin estimar efectos. Los supuestos y límites se precisan en la sección 7 de este informe.
+\textbf{Alcance de esta fase.} Diagnóstico de calidad, exploración inicial y comparaciones descriptivas. La tarifa se describe en IV y el puerto se usa en el diagnóstico de faltantes, por lo que este alcance se acota respecto del plan de la Formativa 1. Las comparaciones muestran la tasa y el \textit{n} de cada grupo, sin estimar efectos. \textbf{Supuestos y limitaciones preliminares.} Cada fila se trata como un pasajero distinto y \texttt{survived} como indicador binario; los contrastes de edad usan 714 de 891 registros y la cubierta solo describe a primera clase. Se precisan en la sección 7.
 
 \section{Implementación inicial del EDA en notebook}
-El notebook integra celdas narrativas de pregunta, acción y justificación con código, salidas e interpretación. Verifica y revisa los datos (III), describe las distribuciones originales (IV), prepara una tabla de trabajo (V) y contrasta los grupos (VI). El enfoque de EDA mínimo viable del curso (Paraíso, 2026) orienta los resúmenes con denominadores visibles y el registro de decisiones. En IV se usan histogramas, frecuencias y la regla de 1,5 veces el rango intercuartílico (Bruce et al., 2020). Las visualizaciones usan Matplotlib (Hunter, 2007) y Seaborn (Waskom, 2021).
+El notebook integra celdas narrativas de pregunta, acción y justificación con código, salidas e interpretación. Tras identificar el proyecto y el dataset (I) y fijar el objetivo y las preguntas (II), verifica y revisa los datos (III), describe las distribuciones originales (IV), prepara una tabla de trabajo (V), contrasta los grupos (VI) y cierra con los supuestos y limitaciones (VII) y la síntesis del avance (VIII). El enfoque de EDA mínimo viable del curso (Paraíso, 2026) orienta los resúmenes con denominadores visibles y el registro de decisiones. En IV se usan histogramas, frecuencias y la regla de 1,5 veces el rango intercuartílico (Bruce et al., 2020). Las visualizaciones usan Matplotlib (Hunter, 2007) y Seaborn (Waskom, 2021).
 
 \section{Documentación trazable de decisiones exploratorias}
 Se conservan las filas idénticas porque el dataset carece de identificador individual (III.4 y V.2). Se mantienen las edades y cubiertas faltantes y se crean \texttt{age\_missing} y \texttt{deck\_known}. Se excluyen cinco columnas redundantes tras comprobar sus equivalencias, se tipifican las categóricas y se deriva el tamaño familiar. El resultado es \texttt{titanic\_eda} (891 filas, 13 columnas), que usa VI. La exploración de IV usa los datos originales.
@@ -137,24 +132,21 @@ Se conservan las filas idénticas porque el dataset carece de identificador indi
 En III.1 se lee la copia local de \texttt{titanic.csv} o, si falta, se reconstruye con Seaborn como respaldo; en ambos casos se verifica el SHA-256 antes de leerlo con \texttt{pandas.read\_csv} (The pandas development team, s.\,f.). Los datos originales se conservan y las transformaciones de la copia se validan en V.3. El notebook registra las versiones de ejecución y declara sus dependencias en \texttt{requirements.txt}. Las 17 celdas se ejecutaron desde cero por ambas rutas con el mismo hash y dimensiones. La estructura y el registro de versiones y decisiones siguen el \textit{Checklist de notebook reproducible} (s.\,f.) y el notebook \textit{EDA mínimo viable} (s.\,f.) del curso.
 
 \section{Registro del proceso, supuestos y limitaciones}
-Se verificó y diagnosticó la fuente, se exploraron las distribuciones, se preparó una copia y se compararon los grupos (III--VI). Cada fila se usa como unidad de análisis. Sin un identificador, no puede determinarse si las filas idénticas representan al mismo pasajero. Los contrastes de edad usan 714 de 891 registros y la ausencia de edad varía entre grupos. La cubierta tiene 77,2\,\% de faltantes, concentrados en segunda y tercera clase. Los resultados se circunscriben al dataset y a comparaciones descriptivas. En la siguiente fase se evaluará la sensibilidad al tratamiento de faltantes y se podrán estratificar las comparaciones.
+\textbf{Pasos.} Verificación del origen por hash y diagnóstico de estructura, faltantes, filas idénticas y consistencia (III); exploración de distribuciones (IV); decisiones y tabla de trabajo (V); comparación de tasas por pregunta (VI). \textbf{Supuestos.} Sin identificador de pasajero no puede determinarse si las filas idénticas son una misma persona, por lo que se conservan; \texttt{alone} solo refleja los familiares que registran \texttt{sibsp} y \texttt{parch}. \textbf{Limitaciones.} La ausencia de edad varía entre grupos, de modo que los resultados con edad conocida pueden diferir de los completos, y las tasas de subgrupos pequeños son sensibles a pocos casos. El dataset no recoge el proceso de evacuación, así que ninguna asociación puede leerse como el mecanismo de la supervivencia. \textbf{Alcances y pendientes.} Comparaciones descriptivas circunscritas al dataset; en la Fase 2 se evaluará la sensibilidad al tratamiento de faltantes, se revisará el origen de las tarifas en 0 y se estratificarán las comparaciones.
 
 \section{Hallazgos exploratorios iniciales y referencias al notebook}
 \begin{enumerate}[nosep,leftmargin=*]
-\item Edad mediana de 28 años (714 registros válidos), tercera clase con 491 de 891 pasajeros y 116 tarifas sobre el límite superior de 1,5 veces el rango intercuartílico (IV, tabla descriptiva y gráficos).
-\item La tasa observada es mayor entre mujeres en las tres clases. En primera clase, 91 de 94 mujeres (96,8\,\%) y 45 de 122 hombres (36,9\,\%) sobrevivieron (VI.1, tabla por sexo y clase).
-\item Las medianas de edad coinciden en 28 años entre quienes sobrevivieron (290) y quienes no (424), con edad conocida (VI.2, tabla y diagrama de caja).
-\item La tasa global más alta se observa en grupos familiares de 2 a 4 personas (57,9\,\%, 292 pasajeros). La comparación entre viajar solo o acompañado cambia al separar por sexo (VI.3).
-\item En tercera clase se observa un 27,7\,\% de edad faltante y un 97,6\,\% de cubierta faltante (V.1, tabla por clase).
+\item Sobreviven 342 de 891 pasajeros (38,4\,\%), línea base de todas las comparaciones. La edad tiene mediana 28 y media 29,70; la tarifa, mediana 14,45 y media 32,20, con 116 valores sobre el límite de 1,5 × RIC. Las 15 tarifas registradas en 0 son todos hombres que viajaban solos y sobrevive 1 de 15 (IV, tabla \texttt{resumen\_iv} e histogramas).
+\item La tasa observada es mayor entre mujeres en las tres clases. En primera clase, 91 de 94 mujeres (96,8\,\%) y 45 de 122 hombres (36,9\,\%) sobrevivieron (VI.1, tabla \texttt{tasa\_sexo\_clase} y gráfico de barras).
+\item Las medianas de edad coinciden en 28 años entre quienes sobrevivieron (290) y quienes no (424), con edad conocida (VI.2, tabla \texttt{resumen\_edad\_supervivencia} y diagrama de caja).
+\item La tasa global más alta se observa en grupos familiares de 2 a 4 personas (57,9\,\%, 292 pasajeros). La comparación entre viajar solo o acompañado cambia al separar por sexo (VI.3, tablas \texttt{tasa\_acompanantes} y \texttt{tasa\_sexo\_solo}).
+\item En tercera clase se observa un 27,7\,\% de edad faltante y un 97,6\,\% de cubierta faltante (V.1, tabla \texttt{patron\_faltantes}).
 \end{enumerate}
 Estas diferencias son descriptivas y no implican causalidad.
 
 \section{Bibliografía}
+\begingroup\footnotesize\setlength{\parindent}{-1.27cm}\leftskip1.27cm
 Bruce, P., Bruce, A., \& Gedeck, P. (2020). \textit{Practical statistics for data scientists: 50+ essential concepts using R and Python} (2.\textsuperscript{a} ed.). O'Reilly Media.
-
-\textit{Checklist de notebook reproducible} [Infografía]. (s.\,f.). Universidad Andrés Bello.
-
-\textit{EDA mínimo viable} [Notebook]. (s.\,f.). Universidad Andrés Bello.
 
 Hunter, J. D. (2007). Matplotlib: A 2D graphics environment. \textit{Computing in Science \& Engineering}, \textit{9}(3), 90--95. \url{https://doi.org/10.1109/MCSE.2007.55}
 
@@ -162,8 +154,14 @@ Paraíso, S. (2026). \textit{Resumen aplicado del libro: EDA mínimo viable} [Ap
 
 The pandas development team. (s.\,f.). \textit{pandas.read\_csv}. pandas documentation. \url{https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html}
 
+Universidad Andrés Bello. (2026). \textit{Checklist de notebook reproducible} [Infografía]. Canvas, MCDI503, Semana 1.
+
+Universidad Andrés Bello. (2026). \textit{EDA mínimo viable} [Notebook]. Canvas, MCDI503, Semana 1.
+
 Waskom, M. (s.\,f.). \textit{seaborn-data} [Conjunto de datos]. GitHub. \url{https://github.com/mwaskom/seaborn-data}
 
 Waskom, M. L. (2021). seaborn: Statistical data visualization. \textit{Journal of Open Source Software}, \textit{6}(60), 3021. \url{https://doi.org/10.21105/joss.03021}
+
+\endgroup
 
 \end{document}

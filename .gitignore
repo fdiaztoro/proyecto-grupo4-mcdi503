@@ -41,6 +41,7 @@ docs/informe_sumativo*/*.synctex.gz
 docs/informe_sumativo*/*.fls
 docs/informe_sumativo*/*.fdb_latexmk
 
-# Notas sueltas en Markdown (se mantienen los README.md)
+# Notas sueltas en Markdown (se mantienen los README.md y lo que viva en docs/)
 *.md
 !**/README.md
+!docs/**/*.md
