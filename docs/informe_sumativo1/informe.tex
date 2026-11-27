@@ -106,7 +106,7 @@ Fecha:               & \proyFecha \\
 \vspace{0.4em}
 
 \section{Introducción y contextualización}
-Los registros del Titanic (1912) permiten explorar la relación entre características de los pasajeros y supervivencia (notebook, sección II). El dataset \texttt{titanic} (Waskom, s.\,f.) reúne 891 pasajeros con variables sociodemográficas (sexo, edad), de viaje (clase, tarifa, puerto) y de acompañantes, con valores faltantes y tipos de variable mixtos, adecuado para un primer ciclo de EDA reproducible. El propósito general es caracterizar el conjunto y examinar de qué manera esos factores se vinculan con la supervivencia. El valor esperado es doble: comprender qué patrones emergen y dejar un diagnóstico de calidad y una selección preliminar de variables que sirva de base a un modelo de clasificación posterior.
+Los registros del Titanic (1912) permiten explorar la relación entre características de los pasajeros y supervivencia (notebook, sección II). El dataset \texttt{titanic} (Waskom, s.\,f.) reúne 891 pasajeros con variables sociodemográficas (sexo, edad), de viaje (clase, tarifa, puerto) y de acompañantes, con valores faltantes y tipos de variable mixtos, adecuado para un primer ciclo de EDA reproducible. El propósito es caracterizar el conjunto y examinar cómo esos factores se vinculan con la supervivencia. El valor esperado es doble: comprender qué patrones emergen y dejar un diagnóstico de calidad y una selección preliminar de variables para un modelo de clasificación posterior.
 
 \section{Objetivo exploratorio, preguntas iniciales y alcance del avance}
 \textbf{Objetivo.} Examinar, mediante un EDA descriptivo y reproducible, la asociación entre la supervivencia y las características sociodemográficas y de viaje de los pasajeros (sexo, edad, clase y acompañamiento familiar), revisando antes la calidad de los datos y documentando las decisiones de preparación (notebook, sección II).
@@ -136,7 +136,7 @@ En III.1 se lee la copia local de \texttt{titanic.csv} o, si falta, se reconstru
 
 \section{Hallazgos exploratorios iniciales y referencias al notebook}
 \begin{enumerate}[nosep,leftmargin=*]
-\item Sobreviven 342 de 891 pasajeros (38,4\,\%), línea base de las comparaciones. La edad es casi simétrica (mediana 28, media 29,70); la tarifa no (mediana 14,45, media 32,20), con 116 valores sobre el límite de 1,5 × RIC. Las 15 tarifas en 0 son todos hombres que viajaban solos y sobrevive 1 (IV, tabla \texttt{resumen\_iv}).
+\item Sobreviven 342 de 891 pasajeros (38,4\,\%), línea base de las comparaciones. La edad es casi simétrica (mediana 28, media 29,70); la tarifa no (14,45 y 32,20), con 116 valores sobre el límite de 1,5 × RIC y 15 tarifas en 0, todos hombres que viajaban solos (IV, tabla \texttt{resumen\_iv}).
 \item La tasa observada es mayor entre mujeres en las tres clases. En primera clase, 91 de 94 mujeres (96,8\,\%) y 45 de 122 hombres (36,9\,\%) sobrevivieron (VI.1, tabla \texttt{tasa\_sexo\_clase} y gráfico de barras).
 \item Las medianas de edad coinciden en 28 años entre quienes sobrevivieron (290) y quienes no (424), pero por tramos la edad sí separa: 58,0\,\% entre los 69 niños de 0 a 12 años y 22,7\,\% entre los 22 pasajeros de 61 o más, frente al 38,4\,\% de base (VI.2, tablas \texttt{resumen\_edad\_supervivencia} y \texttt{tasa\_tramo\_edad}).
 \item La tasa global más alta se observa en grupos familiares de 2 a 4 personas (57,9\,\%, 292 pasajeros). La comparación entre viajar solo o acompañado cambia al separar por sexo (VI.3, tablas \texttt{tasa\_acompanantes} y \texttt{tasa\_sexo\_solo}).
